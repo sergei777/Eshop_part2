@@ -15,5 +15,8 @@
   </head>
   <body>
   Output : ${name}
+  ${address.city}
+  ${address.country}
+  ${address.postcode}
   </body>
 </html>

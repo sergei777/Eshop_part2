@@ -7,6 +7,7 @@
     <mvc:default-servlet-handler/>
     <!--<context:component-scan base-package="org.tylubz.controller" />-->
     <!--<context:component-scan base-package="org.tylubz.service" />-->
+    <!--<context:component-scan base-package="org.tylubz.dao" />-->
     <context:component-scan base-package="org.tylubz" />
     <mvc:annotation-driven />
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

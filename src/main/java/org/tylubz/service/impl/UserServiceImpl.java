@@ -2,7 +2,8 @@ package org.tylubz.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.tylubz.dao.interfaces.UserRepository;
+import org.tylubz.dao.exceptions.DaoStoreException;
+import org.tylubz.dao.interfaces.UserDao;
 import org.tylubz.entity.UserEntity;
 import org.tylubz.service.interfaces.UserService;
 
@@ -12,30 +13,26 @@ import org.tylubz.service.interfaces.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository repository;
-
     @Autowired
-    public void setRepository(UserRepository repository) {
-        this.repository = repository;
+    private UserDao userDao;
+
+    @Override
+    public UserEntity create(UserEntity entity) throws DaoStoreException{
+        return userDao.create(entity);
     }
 
     @Override
-    public UserEntity create(UserEntity entity) {
-        return repository.save(entity);
+    public UserEntity read(Integer id) throws DaoStoreException {
+        return userDao.read(id);
     }
 
     @Override
-    public UserEntity read(Integer id) {
-        return repository.findOne(id);
+    public void update(UserEntity entity) throws DaoStoreException {
+        userDao.update(entity);
     }
 
     @Override
-    public void update(UserEntity entity) {
-        repository.save(entity);
-    }
-
-    @Override
-    public void delete(UserEntity entity) {
-        repository.delete(entity);
+    public void delete(UserEntity entity) throws DaoStoreException {
+        userDao.delete(entity);
     }
 }

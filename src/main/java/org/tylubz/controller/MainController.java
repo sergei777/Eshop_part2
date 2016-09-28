@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.tylubz.entity.AddressEntity;
-import org.tylubz.service.interfaces.AddressService;
+import org.tylubz.dao.exceptions.DaoStoreException;
+import org.tylubz.entity.UserEntity;
+import org.tylubz.service.interfaces.UserService;
 
 
 /**
@@ -15,7 +16,7 @@ import org.tylubz.service.interfaces.AddressService;
 @RestController
 public class MainController {
     @Autowired
-    AddressService service;
+    UserService service;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView main() {
@@ -33,10 +34,15 @@ public class MainController {
 
     @RequestMapping(value = "/controller")
     public ModelAndView controller() {
-        AddressEntity addressEntity = service.read(22);
-        System.out.println(addressEntity.getCity());
+        UserEntity userEntity = null;
+        try {
+            userEntity = service.read(1);
+        } catch (DaoStoreException e) {
+            e.printStackTrace();
+        }
+        System.out.println(userEntity.getFirstName());
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("address", addressEntity);
+        modelAndView.addObject("address", userEntity);
         modelAndView.setViewName("index");
         return modelAndView;
     }

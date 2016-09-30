@@ -8,10 +8,15 @@
     <!--<context:component-scan base-package="org.tylubz.controller" />-->
     <!--<context:component-scan base-package="org.tylubz.service" />-->
     <!--<context:component-scan base-package="org.tylubz.dao" />-->
-    <context:component-scan base-package="org.tylubz" />
+    <!--<context:component-scan base-package="org.tylubz" />-->
+    <!--<context:component-scan base-package="org.tylubz.controller" />-->
     <mvc:annotation-driven />
+    <context:component-scan base-package="org.tylubz" />
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/" />
         <property name="suffix" value=".jsp" />
     </bean>
+
+    <!--Spring Security-->
+    <bean id="userDetailsServiceImpl" class="org.tylubz.service.impl.UserDetailsServiceImpl"></bean>
 </beans>

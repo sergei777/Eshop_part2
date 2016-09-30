@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.tylubz.dao.exceptions.DaoStoreException;
 import org.tylubz.entity.UserEntity;
 import org.tylubz.service.interfaces.UserService;
 
@@ -34,16 +33,30 @@ public class MainController {
 
     @RequestMapping(value = "/controller")
     public ModelAndView controller() {
-        UserEntity userEntity = null;
-        try {
-            userEntity = service.read(1);
-        } catch (DaoStoreException e) {
-            e.printStackTrace();
-        }
+        UserEntity userEntity = service.read(1);
         System.out.println(userEntity.getFirstName());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("address", userEntity);
         modelAndView.setViewName("index");
+        return modelAndView;
+    }
+    @RequestMapping(value = "/loginform")
+    public ModelAndView login() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("loginform");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin")
+    public ModelAndView adminpage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/admin/admin");
+        return modelAndView;
+    }
+    @RequestMapping(value = "/user")
+    public ModelAndView userpage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/user/bucket");
         return modelAndView;
     }
 }

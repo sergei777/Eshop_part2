@@ -10,11 +10,11 @@ import java.io.Serializable;
  */
 public interface GenericService<T,ID extends Serializable>{
     @Transactional
-    T create(T entity) throws DaoStoreException;
+    T create(T entity);
     @Transactional
-    T read(ID id) throws DaoStoreException;
+    T read(ID id);
     @Transactional
-    void update(T entity) throws DaoStoreException;
+    void update(T entity);
     @Transactional
-    void delete(T entity) throws DaoStoreException;
+    void delete(T entity);
 }

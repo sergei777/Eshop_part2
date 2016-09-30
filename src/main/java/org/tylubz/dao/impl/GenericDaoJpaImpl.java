@@ -1,5 +1,7 @@
 package org.tylubz.dao.impl;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.tylubz.dao.exceptions.DaoStoreException;
 import org.tylubz.dao.interfaces.GenericDao;
 
@@ -17,6 +19,7 @@ import java.util.List;
  * @param <PK> Primary key
  * @author Sergei
  */
+//@Repository
 public class GenericDaoJpaImpl<E, PK extends Serializable>
         implements GenericDao<E, PK> {
 

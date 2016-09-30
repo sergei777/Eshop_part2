@@ -1,6 +1,8 @@
 package org.tylubz.dao.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.tylubz.dao.interfaces.UserDao;
 import org.tylubz.entity.UserEntity;
 
@@ -9,8 +11,13 @@ import javax.persistence.Query;
 /**
  * Created by Sergei on 27.09.2016.
  */
-@Component("userDao")
+@Repository
 public class UserDaoImpl extends GenericDaoJpaImpl<UserEntity,Integer> implements UserDao {
+
+//    @Autowired
+//    public UserDaoImpl (){
+//        super();
+//    }
 
     /**
      * returns entity by username

@@ -18,5 +18,5 @@
     </bean>
 
     <!--Spring Security-->
-    <bean id="userDetailsServiceImpl" class="org.tylubz.service.impl.UserDetailsServiceImpl"></bean>
+    <!--<bean id="userDetailsServiceImpl" class="org.tylubz.service.impl.UserDetailsServiceImpl"></bean>-->
 </beans>

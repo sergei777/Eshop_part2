@@ -17,13 +17,13 @@ import java.util.Set;
 /**
  * Created by Sergei on 28.09.2016.
  */
-//@Service
-public class UserDetailsServiceImpl  {
-    //@Autowired
-    //private UserDao userDao;
-    //@Override
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+    @Autowired
+    private UserDao userDao;
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = null;// =  userDao.getEntityByUsername(username);
+        UserEntity user =  userDao.getEntityByUsername(username);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 //            grantedAuthorities.add(new SimpleGrantedAuthority(user.getUserType()));

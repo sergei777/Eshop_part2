@@ -9,7 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <spring-framework-version>4.1.5.RELEASE</spring-framework-version>
-        <spring-security-framework-version>4.1.3.RELEASE</spring-security-framework-version>
+        <!--<spring-security-framework-version>4.1.3.RELEASE</spring-security-framework-version>-->
+        <spring-security-framework-version>3.2.9.RELEASE</spring-security-framework-version>
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
@@ -106,6 +107,27 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>${spring-security-framework-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-tx</artifactId>
+                </exclusion>
+
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-jdbc</artifactId>
+                </exclusion>
+
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-expression</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
@@ -113,7 +135,42 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${spring-security-framework-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <!--For correct Spring Security work -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>spring-jdbc</artifactId>-->
+            <!--<version>${spring-security-framework-version}</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-expression &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>spring-expression</artifactId>-->
+            <!--<version>${spring-security-framework-version}</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-aop &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>spring-aop</artifactId>-->
+            <!--<version>${spring-security-framework-version}</version>-->
+        <!--</dependency>-->
+
+
+        <!--end-->
+
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+        <!--<dependency>-->
+            <!--<groupId>org.aspectj</groupId>-->
+            <!--<artifactId>aspectjrt</artifactId>-->
+            <!--<version>1.7.3</version>-->
+        <!--</dependency>-->
 
         <!--https://mvnrepository.com/artifact/jstl/jstl -->
         <dependency>

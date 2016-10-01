@@ -17,14 +17,14 @@ public class MainController {
     @Autowired
     UserService service;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView main() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("name", "Funny String!");
-        modelAndView.setViewName("index");
-        return modelAndView;
-
-    }
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public ModelAndView main() {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("name", "Funny String!");
+//        modelAndView.setViewName("index");
+//        return modelAndView;
+//
+//    }
 
     @RequestMapping(value = "/d")
     public String getHome() {
@@ -47,16 +47,16 @@ public class MainController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin")
-    public ModelAndView adminpage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/admin/admin");
-        return modelAndView;
-    }
-    @RequestMapping(value = "/user")
-    public ModelAndView userpage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/user/bucket");
-        return modelAndView;
-    }
+//    @RequestMapping(value = "/admin")
+//    public ModelAndView adminpage() {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("/admin/admin");
+//        return modelAndView;
+//    }
+//    @RequestMapping(value = "/user")
+//    public ModelAndView userpage() {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("/user/bucket");
+//        return modelAndView;
+//    }
 }

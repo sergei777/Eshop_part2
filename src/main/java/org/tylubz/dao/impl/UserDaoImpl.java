@@ -14,11 +14,6 @@ import javax.persistence.Query;
 @Repository
 public class UserDaoImpl extends GenericDaoJpaImpl<UserEntity,Integer> implements UserDao {
 
-//    @Autowired
-//    public UserDaoImpl (){
-//        super();
-//    }
-
     /**
      * returns entity by username
      * and password

@@ -7,6 +7,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.tylubz.dao.interfaces.UserDao;
 import org.tylubz.entity.UserEntity;
@@ -25,8 +27,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user =  userDao.getEntityByUsername(username);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-//            grantedAuthorities.add(new SimpleGrantedAuthority(user.getUserType()));
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            grantedAuthorities.add(new SimpleGrantedAuthority(user.getUserType()));
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
 }

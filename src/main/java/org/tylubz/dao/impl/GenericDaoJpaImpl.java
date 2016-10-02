@@ -19,8 +19,8 @@ import java.util.List;
  * @param <PK> Primary key
  * @author Sergei
  */
-//@Repository
-public class GenericDaoJpaImpl<E, PK extends Serializable>
+@Repository
+public abstract class GenericDaoJpaImpl<E, PK extends Serializable>
         implements GenericDao<E, PK> {
 
     protected Class<E> entityClass;

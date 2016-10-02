@@ -27,8 +27,8 @@ public class MainController {
 //    }
 
     @RequestMapping(value = "/d")
-    public String getHome() {
-        return "index";
+    public ModelAndView getHome() {
+        return new ModelAndView("index");
     }
 
     @RequestMapping(value = "/controller")
@@ -42,9 +42,7 @@ public class MainController {
     }
     @RequestMapping(value = "/loginform")
     public ModelAndView login() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("loginform");
-        return modelAndView;
+        return new ModelAndView("loginform");
     }
 
 //    @RequestMapping(value = "/admin")

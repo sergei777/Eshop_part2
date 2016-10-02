@@ -6,6 +6,8 @@ import org.tylubz.dao.interfaces.UserDao;
 import org.tylubz.entity.UserEntity;
 import org.tylubz.service.interfaces.UserService;
 
+import java.util.List;
+
 /**
  * Created by Sergei on 26.09.2016.
  */
@@ -33,5 +35,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(UserEntity entity) {
         userDao.delete(entity);
+    }
+    @Override
+    public List<UserEntity> readAll() {
+        return userDao.readAll();
     }
 }

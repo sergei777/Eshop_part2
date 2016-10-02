@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <t:genericpage>
     <jsp:attribute name="header">
          <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--%>
@@ -48,7 +49,9 @@
                         </div>
                         <div class="panel-body">
                             <%--<form id="sign-in-form" method="POST">--%>
-                            <form action="/login" method="POST">
+                                <%--<form action="/login" method="POST">--%>
+                                <spring:url var="authUrl" value="/login"/>
+                            <form action="${authUrl}" method="POST">
                                 <fieldset>
                                     <div class="row">
                                         <div class="center-block">
@@ -64,7 +67,7 @@
 													<i class="glyphicon glyphicon-user"></i>
 												</span>
                                                     <input class="form-control" placeholder="Имя пользователя"
-                                                           name="login" type="text" autofocus>
+                                                           name="j_username" type="text" autofocus>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -72,7 +75,7 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-lock"></i>
 												</span>
-                                                    <input class="form-control" placeholder="Пароль" name="password"
+                                                    <input class="form-control" placeholder="Пароль" name="j_password"
                                                            type="password">
                                                 </div>
                                             </div>

@@ -14,7 +14,7 @@
         <logout logout-url="/logout" logout-success-url="/"/>
         <intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" requires-channel="https"/>
         <!--<intercept-url pattern="/dba**" access="hasRole('ADMIN') and hasRole('DBA')" />-->
-        <intercept-url pattern="/dba**" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/user**" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/*" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_USER')" />
         <anonymous username="guest" granted-authority="ROLE_ANONYMOUS"/>
         <!--<form-login  authentication-failure-url="/error.jsp" />-->

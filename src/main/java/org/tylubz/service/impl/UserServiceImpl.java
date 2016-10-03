@@ -2,7 +2,9 @@ package org.tylubz.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.tylubz.dao.interfaces.UserDao;
+import org.tylubz.entity.OrderEntity;
 import org.tylubz.entity.UserEntity;
 import org.tylubz.service.interfaces.UserService;
 
@@ -39,5 +41,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserEntity> readAll() {
         return userDao.readAll();
+    }
+
+    @Override
+    @Transactional
+    public UserEntity getEntityByUsername(String username) {
+        return userDao.getEntityByUsername(username);
+    }
+
+    @Override
+    @Transactional
+    public List<OrderEntity> getUserOrders(String username) {
+        UserEntity entity = userDao.getEntityByUsername(username);
+        return entity.getOrders();
     }
 }

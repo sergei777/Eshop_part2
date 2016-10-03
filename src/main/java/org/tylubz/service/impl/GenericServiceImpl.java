@@ -2,6 +2,7 @@ package org.tylubz.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.tylubz.dao.interfaces.GenericDao;
 import org.tylubz.service.interfaces.GenericService;
 
@@ -20,25 +21,30 @@ public abstract class GenericServiceImpl<T,ID extends Serializable> implements G
         this.genericDao = genericDao;
     }
     @Override
+    @Transactional
     public T create(T entity) {
         return genericDao.create(entity);
     }
 
     @Override
+    @Transactional
     public T read(ID id) {
         return genericDao.read(id);
     }
 
     @Override
+    @Transactional
     public void update(T entity) {
         genericDao.update(entity);
     }
 
     @Override
+    @Transactional
     public void delete(T entity) {
         genericDao.delete(entity);
     }
     @Override
+    @Transactional
     public List<T> readAll(){
         return genericDao.readAll();
     }

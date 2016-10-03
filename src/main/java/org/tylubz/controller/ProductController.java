@@ -26,4 +26,11 @@ public class ProductController  {
         modelAndView.setViewName("products");
         return modelAndView;
     }
+    @RequestMapping(value = "/getProductItem")
+    public ModelAndView getProductItem() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("productItem");
+        return modelAndView;
+    }
+
 }

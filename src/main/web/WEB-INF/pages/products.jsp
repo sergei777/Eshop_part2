@@ -32,7 +32,7 @@
                     <c:forEach items="${products}" var="item">
                         <div class="col-xs-4 col-md-4" style="height:200px;">
                             <div class="div-border">
-                                <form action="${pageContext.request.contextPath}/item.jsp" method="get">
+                                <form action="${pageContext.request.contextPath}/product/getProductItem" method="GET">
                                     <input type="hidden" name="name" value="${item.name}">
                                     <input type="hidden" name="weight" value="${item.weight}">
                                     <input type="hidden" name="volume" value="${item.volume}">
@@ -54,7 +54,7 @@
                     </c:forEach>
                 </div>
                 <div class="col-md-2">
-                    <label for="sel1">Цена:</label>
+                    <label>Цена:</label>
                     <div class="brd">
                         <form id="updateProductByPriceRange" action="${pageContext.request.contextPath}/product-list"
                               method="get">

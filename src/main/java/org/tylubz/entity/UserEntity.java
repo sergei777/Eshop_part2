@@ -41,11 +41,13 @@ public class UserEntity {
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "user")
+            mappedBy = "user",fetch = FetchType.EAGER)
+//            mappedBy = "user")
     private List<OrderEntity> orders;
 
     @OneToOne(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
+            //fetch = FetchType.LAZY)
     @JoinColumn(name = "user_address")
     private AddressEntity addressEntity;
 

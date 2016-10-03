@@ -30,17 +30,20 @@ public class OrderEntity {
 
 
     @OneToOne(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+            //fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     @JoinColumn(name = "user_addressid")
     private AddressEntity address;
 
     @ManyToOne(cascade = CascadeType.MERGE,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
+            //fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
     @ManyToMany(cascade = CascadeType.MERGE,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
+            //fetch = FetchType.LAZY)
     @JoinTable(name = "order_has_product",
             joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"))

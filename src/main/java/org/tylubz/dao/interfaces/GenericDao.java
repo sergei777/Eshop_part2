@@ -48,6 +48,9 @@ public interface GenericDao<E, PK extends Serializable> {
      */
     void delete(E persistentObject);
 
+
+    void delete(PK id);
+
     /**
      * returns all entities from database
      * @return list of entities

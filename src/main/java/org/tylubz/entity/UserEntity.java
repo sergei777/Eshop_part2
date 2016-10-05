@@ -40,12 +40,12 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(cascade = {CascadeType.REMOVE,CascadeType.MERGE,CascadeType.REFRESH},//orphanRemoval = true,
             mappedBy = "user",fetch = FetchType.EAGER)
 //            mappedBy = "user")
     private List<OrderEntity> orders;
 
-    @OneToOne(cascade = CascadeType.ALL,
+    @OneToOne(cascade = {CascadeType.REMOVE,CascadeType.MERGE,CascadeType.REFRESH},
             fetch = FetchType.EAGER)
             //fetch = FetchType.LAZY)
     @JoinColumn(name = "user_address")
@@ -123,11 +123,55 @@ public class UserEntity {
         this.orders = orders;
     }
 
+    public void addOrder(OrderEntity entity){
+        orders.add(entity);
+        entity.setUser(this);
+    }
+    public void removeOrder(OrderEntity entity){
+       // entity.setUser(null);
+        boolean a = this.orders.equals(entity);
+        this.orders.remove(entity);
+        int f=3;
+    }
+
     public AddressEntity getAddressEntity() {
         return addressEntity;
     }
 
     public void setAddressEntity(AddressEntity addressEntity) {
         this.addressEntity = addressEntity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserEntity that = (UserEntity) o;
+
+        if (getId() != that.getId()) return false;
+        if (!getUsername().equals(that.getUsername())) return false;
+        if (!getUserType().equals(that.getUserType())) return false;
+        if (!getFirstName().equals(that.getFirstName())) return false;
+        if (getSecondName() != null ? !getSecondName().equals(that.getSecondName()) : that.getSecondName() != null)
+            return false;
+        if (getBirthDate() != null ? !getBirthDate().equals(that.getBirthDate()) : that.getBirthDate() != null)
+            return false;
+        if (getEmail() != null ? !getEmail().equals(that.getEmail()) : that.getEmail() != null) return false;
+        return getPassword().equals(that.getPassword());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + getUsername().hashCode();
+        result = 31 * result + getUserType().hashCode();
+        result = 31 * result + getFirstName().hashCode();
+        result = 31 * result + (getSecondName() != null ? getSecondName().hashCode() : 0);
+        result = 31 * result + (getBirthDate() != null ? getBirthDate().hashCode() : 0);
+        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+        result = 31 * result + getPassword().hashCode();
+        return result;
     }
 }

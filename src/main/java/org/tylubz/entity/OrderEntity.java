@@ -29,19 +29,20 @@ public class OrderEntity {
     private String orderStatus;
 
 
-    @OneToOne(cascade = CascadeType.ALL,
+    @OneToOne(//orphanRemoval=true,cascade = CascadeType.ALL,
+            cascade = CascadeType.ALL,
             //fetch = FetchType.LAZY)
             fetch = FetchType.EAGER)
     @JoinColumn(name = "user_addressid")
     private AddressEntity address;
 
-    @ManyToOne(cascade = CascadeType.MERGE,
+    @ManyToOne(//cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
             //fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    @ManyToMany(cascade = CascadeType.MERGE,
+    @ManyToMany(//cascade = CascadeType.REFRESH,
             fetch = FetchType.EAGER)
             //fetch = FetchType.LAZY)
     @JoinTable(name = "order_has_product",
@@ -113,4 +114,33 @@ public class OrderEntity {
         this.address = address;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        OrderEntity entity = (OrderEntity) o;
+
+        if (getId() != entity.getId()) return false;
+        if (!getPaymentType().equals(entity.getPaymentType())) return false;
+        if (!getDeliveryType().equals(entity.getDeliveryType())) return false;
+        if (!getPaymentStatus().equals(entity.getPaymentStatus())) return false;
+        if (!getOrderStatus().equals(entity.getOrderStatus())) return false;
+        if (!address.equals(entity.address)) return false;
+        return getUser().equals(entity.getUser());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + getPaymentType().hashCode();
+        result = 31 * result + getDeliveryType().hashCode();
+        result = 31 * result + getPaymentStatus().hashCode();
+        result = 31 * result + getOrderStatus().hashCode();
+        result = 31 * result + address.hashCode();
+        result = 31 * result + getUser().hashCode();
+        return result;
+    }
 }

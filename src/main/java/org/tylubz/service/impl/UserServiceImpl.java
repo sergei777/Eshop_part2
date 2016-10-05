@@ -20,25 +20,36 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
+    @Transactional
     public UserEntity create(UserEntity entity) {
         return userDao.create(entity);
     }
 
     @Override
+    @Transactional
     public UserEntity read(Integer id) {
         return userDao.read(id);
     }
 
     @Override
+    @Transactional
     public void update(UserEntity entity) {
         userDao.update(entity);
     }
 
     @Override
+    @Transactional
     public void delete(UserEntity entity) {
         userDao.delete(entity);
     }
+
     @Override
+    @Transactional
+    public void delete(Integer integer) {
+    }
+
+    @Override
+    @Transactional
     public List<UserEntity> readAll() {
         return userDao.readAll();
     }

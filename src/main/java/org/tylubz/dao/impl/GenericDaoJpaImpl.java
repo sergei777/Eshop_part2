@@ -48,6 +48,7 @@ public abstract class GenericDaoJpaImpl<E, PK extends Serializable>
      * @return
      * @throws DaoStoreException
      */
+    @Override
     public E create(E newInstance) {
         getEntityManager().persist(newInstance);
         return newInstance;
@@ -59,6 +60,7 @@ public abstract class GenericDaoJpaImpl<E, PK extends Serializable>
      * @param id primary key
      * @return entity
      */
+    @Override
     public E read(PK id) {
         return getEntityManager().find(entityClass, id);
     }
@@ -69,6 +71,7 @@ public abstract class GenericDaoJpaImpl<E, PK extends Serializable>
      * @param entity for updating
      * @throws DaoStoreException
      */
+    @Override
     public void update(E entity) {
             getEntityManager().merge(entity);
     }
@@ -79,8 +82,22 @@ public abstract class GenericDaoJpaImpl<E, PK extends Serializable>
      * @param entity for deleting
      * @throws DaoStoreException
      */
+    @Override
     public void delete(E entity) {
             getEntityManager().remove(entity);
+    }
+
+    @Override
+    public void delete(PK id) {
+        try {
+            E entity = getEntityManager().find(entityClass, id);
+            getEntityManager().remove(entity);
+            int g = 4;
+        }
+        catch (Exception ex){
+            System.out.println(ex);
+            ex.printStackTrace();
+        }
     }
 
     /**

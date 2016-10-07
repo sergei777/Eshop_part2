@@ -11,18 +11,20 @@
 <t:genericpage>
     <jsp:attribute name="header">
         <h1>Товар</h1>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
     </jsp:attribute>
     <jsp:attribute name="footer">
     </jsp:attribute>
     <jsp:body>
         <div class="container">
             <div class="row">
-            <h2>Велосипед ${param.name}</h2>
+                <h2>Велосипед ${param.name}</h2>
                 <div class="col-md-6">
-            <img src="${pageContext.request.contextPath}/images/${param.imgPath}"
-                 width="600px"
-                 height="350px">
-            </div>
+                    <img src="${pageContext.request.contextPath}/images/${param.imgPath}"
+                         width="600px"
+                         height="350px">
+                </div>
                 <h4>Категория товара:</h4>
                 <h5>${param.category} велосипеды </h5>
                 <h4>Вес:</h4>
@@ -34,19 +36,46 @@
                 <h4>Цена:</h4>
                 <h5>${param.price} руб</h5>
                 <br>
-                <form action="${pageContext.request.contextPath}/shopping-cart" method="GET">
-                    <input type="hidden" name="action" value="addItem">
+                <form id="idForm" action="javascript:void(null);" onsubmit="acall()" method="post" name = "addToBucket" >
+                    <%--<input type="hidden" name="action" value="addItem">--%>
                     <input type="hidden" name="name" value="${param.name}">
                     <input type="hidden" name="amount" value="1">
                     <input type="hidden" name="price" value="${param.price}">
                     <input type="hidden" name="id" value="${param.id}">
-                    <input type="submit"
-                           <c:if test="${param.amount==0}">
-                            disabled title="Товар временно отсутствует"
-                            </c:if>
+                    <input type="submit" id="submitbutton"
+                    <c:if test="${param.amount==0}">
+                           disabled title="Товар временно отсутствует"
+                    </c:if>
                            class="btn btn-success" value="Добавить в корзину">
                 </form>
-                </div>
+            </div>
         </div>
+        <script>
+            //function acall() {
+//            $(document).ready(function(){
+//                //$("form#addToBucket").submit(function(event) {
+//                $("#submitbutton").submit(function(event) {
+//                    event.preventDefault();
+                function acall(){
+                    var data = {
+                        id : document.addToBucket.elements['id'].value,
+                        name : document.addToBucket.elements['name'].value,
+                        amount : document.addToBucket.elements['amount'].value,
+                        price : document.addToBucket.elements['price'].value
+                    };
+
+                $.ajax({
+                    type: "POST",
+                    url: "${pageContext.request.contextPath}/bucket/addItem",
+                    data: JSON.stringify(data),
+                    dataType: "json",
+                    contentType: "application/json",
+                    mimeType: 'application/json',
+                    success: function (data) {
+                        window.location.href = data.redirectUrl;
+                    }
+                });
+            }
+        </script>
     </jsp:body>
 </t:genericpage>

@@ -22,7 +22,6 @@
     <jsp:body>
         <script>
             $(document).ready(function(){
-
                 $("#orders-table").on('click','form',function(){
                     $(this).closest('tr').remove();
                     //var data={};

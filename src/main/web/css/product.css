@@ -1,0 +1,14 @@
+.div-border:hover{
+    border: 1px solid #333333;
+    border-radius: 35px;
+    height: 200px;
+    overflow:hidden;
+}
+
+/*.block-inline {*/
+    /*display: inline-block;*/
+/*}*/
+
+.brd {
+    border-top: 1px solid black;
+}

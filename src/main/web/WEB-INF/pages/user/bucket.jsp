@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <t:genericpage>
     <jsp:attribute name="header">
         <h1>Корзина</h1>
@@ -46,18 +47,19 @@
                     <th></th>
                 </tr>
             </table>
-            <form action="${pageContext.request.contextPath}/order.jsp" method="GET">
-                <input type="submit" class="btn btn-default" value="Оформить заказ"
-                <c:if test="${empty sessionScope.first_name}">
+            <form action="${pageContext.request.contextPath}/order/createOrder" method="GET">
+                <input type="submit" class="btn btn-primary" value="Оформить заказ"
+                    <security:authorize access="hasRole('ROLE_USER')" var="isUser"/>
+                <c:if test="${!isUser}">
                        disabled title="Необходимо зарегистрироваться"
                 </c:if>
                 <c:if test="${empty sessionScope.shoppingCart}">
                        disabled title="Нет товаров в корзине"
                 </c:if>
                 <c:if test="${!empty sessionScope.shoppingCart}">
-                <c:if test="${sessionScope.shoppingCart.totalAmount==0}">
+                    <c:if test="${sessionScope.shoppingCart.totalAmount==0}">
                        disabled title="Нет товаров в корзине"
-                </c:if>
+                    </c:if>
                 </c:if>
                 >
             </form>

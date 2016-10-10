@@ -36,8 +36,7 @@
                 <h4>Цена:</h4>
                 <h5>${param.price} руб</h5>
                 <br>
-                <form id="idForm" action="javascript:void(null);" onsubmit="acall()" method="post" name = "addToBucket" >
-                    <%--<input type="hidden" name="action" value="addItem">--%>
+                <form action="javascript:void(null);" onsubmit="acall()" method="post" name = "addToBucket" >
                     <input type="hidden" name="name" value="${param.name}">
                     <input type="hidden" name="amount" value="1">
                     <input type="hidden" name="price" value="${param.price}">
@@ -51,11 +50,6 @@
             </div>
         </div>
         <script>
-            //function acall() {
-//            $(document).ready(function(){
-//                //$("form#addToBucket").submit(function(event) {
-//                $("#submitbutton").submit(function(event) {
-//                    event.preventDefault();
                 function acall(){
                     var data = {
                         id : document.addToBucket.elements['id'].value,

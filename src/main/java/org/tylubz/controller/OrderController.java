@@ -1,10 +1,8 @@
 package org.tylubz.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.tylubz.entity.OrderEntity;
 import org.tylubz.service.interfaces.OrderService;
 
 /**
@@ -15,6 +13,11 @@ import org.tylubz.service.interfaces.OrderService;
 public class OrderController {
     @Autowired
     private OrderService service;
+
+        @RequestMapping(value = { "/createOrder"})
+    public ModelAndView getOrderPage(){
+            return new ModelAndView("user/createOrder");
+        }
 //    @RequestMapping(value = { "/getOrders"})
 //    public ModelAndView getOrders() {
 //        ModelAndView modelAndView = new ModelAndView();

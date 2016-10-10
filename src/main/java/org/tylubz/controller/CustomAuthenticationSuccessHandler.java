@@ -40,7 +40,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             roles.add(a.getAuthority());
         }
        if(roles.contains("ROLE_ADMIN")){
-           request.getRequestDispatcher("/admin").forward(request,response);
+           request.getRequestDispatcher("/admin/home").forward(request,response);
        }
         if(roles.contains("ROLE_USER")){
             request.getRequestDispatcher("/").forward(request,response);

@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.tylubz.entity.ProductEntity;
 import org.tylubz.service.interfaces.ProductService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -19,11 +20,14 @@ public class ProductController  {
     ProductService productService;
 
     @RequestMapping(value = "/getProducts")
-    public ModelAndView controller() {
+    public ModelAndView controller(HttpServletRequest request) {
         List<ProductEntity> productList = productService.readAll();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("products",productList);
-        modelAndView.setViewName("products");
+        if(request.isUserInRole("ROLE_ADMIN")){
+            modelAndView.setViewName("/admin/productList");
+        }
+        else modelAndView.setViewName("products");
         return modelAndView;
     }
     @RequestMapping(value = "/getProductItem")

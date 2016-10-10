@@ -12,7 +12,8 @@
                 authentication-success-handler-ref="customAuthenticationSuccessHandler"
                 default-target-url="/"/>
         <logout logout-url="/logout" logout-success-url="/"/>
-        <intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" requires-channel="https"/>
+        <intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/rest**" access="hasRole('ROLE_APPLICATION')"/>
         <!--<intercept-url pattern="/dba**" access="hasRole('ADMIN') and hasRole('DBA')" />-->
         <intercept-url pattern="/user**" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/*" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_USER')" />

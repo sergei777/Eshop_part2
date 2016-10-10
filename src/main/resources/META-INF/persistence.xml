@@ -4,6 +4,7 @@
     <persistence-unit name="myapp" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
+        <class>org.tylubz.entity.CategoryEntity</class>
         <class>org.tylubz.entity.AddressEntity</class>
         <class>org.tylubz.entity.OrderEntity</class>
         <class>org.tylubz.entity.OrderHasProductEntity</class>

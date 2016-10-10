@@ -22,8 +22,10 @@ public class ProductEntity {
     @Column(name = "price")
     private Float price;
 
-    @Column(name = "category")
-    private String category;
+    @OneToOne(cascade = {CascadeType.REMOVE,CascadeType.MERGE,CascadeType.REFRESH},
+            fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private CategoryEntity category;
 
     @Column(name = "weight")
     private Float weight;
@@ -61,13 +63,6 @@ public class ProductEntity {
         this.price = price;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     public Float getWeight() {
         return weight;
@@ -99,6 +94,14 @@ public class ProductEntity {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
     }
 }
 

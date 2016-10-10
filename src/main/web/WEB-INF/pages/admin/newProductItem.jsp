@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:genericadminpage>
     <jsp:attribute name="header">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -31,7 +32,15 @@
                     <div class="col-xs-6">
                         <label>Категория</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" name="category" required>
+                                <%--<input type="text" class="form-control" name="category" required>--%>
+                            <select name="category" required class="form-control">
+                                <c:forEach items="${requestScope.categoryList}" var="item">
+                                    <option value="${item.id}|${item.category}">
+                                            ${item.category}
+                                    </option>
+                                    <option hidden></option>
+                                </c:forEach>
+                            </select>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
                         <!--------------------------------------separator--------------------------------------------------------------->
@@ -96,13 +105,16 @@
             </form>
         </div>
         <script>
-            function acall(){
+            function acall() {
                 //e.preventDefault(); // avoid to execute the actual submit of the form.z
                 var url = "${pageContext.request.contextPath}/admin/productItem"; // the script where you handle the form input.
+                var category = $("select[name=category]").val().split('|');
                 var data = {
                     name: $("input[name=name]").val(),
                     price: $("input[name=price]").val(),
-                    category: $("input[name=category]").val(),
+                    category: {
+                        id: category[0], category: category[1],
+                    },
                     weight: $("input[name=weight]").val(),
                     volume: $("input[name=volume]").val(),
                     amount: $("input[name=amount]").val(),

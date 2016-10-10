@@ -37,7 +37,7 @@
                                     <input type="hidden" name="weight" value="${item.weight}">
                                     <input type="hidden" name="volume" value="${item.volume}">
                                     <input type="hidden" name="amount" value="${item.amount}">
-                                    <input type="hidden" name="category" value="${item.category}">
+                                    <input type="hidden" name="category" value="${item.category.category}">
                                     <input type="hidden" name="price" value="${item.price}">
                                     <input type="hidden" name="imgPath" value="${item.imagePath}">
                                     <input type="hidden" name="id" value="${item.id}">

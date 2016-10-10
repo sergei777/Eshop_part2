@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.tylubz.entity.CategoryEntity;
 import org.tylubz.entity.ProductEntity;
+import org.tylubz.service.interfaces.CategoryService;
 import org.tylubz.service.interfaces.OrderService;
 import org.tylubz.service.interfaces.ProductService;
 import org.tylubz.service.interfaces.UserService;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 /**
  * Created by Sergei on 07.10.2016.
@@ -21,6 +26,9 @@ public class AdminPageController {
     private OrderService orderService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CategoryService categoryService;
+
     @RequestMapping(value = {"/","home"})
     public ModelAndView getAdminPage(){
         return new ModelAndView("admin/admin");
@@ -42,6 +50,7 @@ public class AdminPageController {
     @RequestMapping(value = {"/productItem/{id}"},method = RequestMethod.GET)
     public ModelAndView getProductItemPage(@PathVariable Integer id){
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("categoryList",categoryService.readAll());
         modelAndView.addObject("productItem",productService.read(id));
         modelAndView.setViewName("admin/productItem");
         return modelAndView;
@@ -49,8 +58,18 @@ public class AdminPageController {
     @RequestMapping(value = {"/newProductItem"},method = RequestMethod.GET)
     public ModelAndView getNewProductItemPage(){
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("categoryList",categoryService.readAll());
         modelAndView.setViewName("admin/newProductItem");
         return modelAndView;
+    }
+    @RequestMapping(value = {"/newCategory"},method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public String addNewCategory(@RequestBody String category) throws UnsupportedEncodingException {
+        CategoryEntity entity = new CategoryEntity();
+        entity.setCategory(category);
+        categoryService.create(entity);
+//        return new ModelAndView("admin/productList");
+        return "{\"status\":\"OK\"}";
     }
     @RequestMapping(value = {"/productItem"},method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)

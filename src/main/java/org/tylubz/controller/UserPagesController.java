@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.tylubz.entity.OrderEntity;
+import org.tylubz.entity.UserEntity;
 import org.tylubz.service.interfaces.OrderService;
 import org.tylubz.service.interfaces.UserService;
 
@@ -17,7 +18,7 @@ import java.util.List;
  * Created by Sergei on 28.09.2016.
  */
 @RestController
-@RequestMapping(value = "/user", method = RequestMethod.GET)
+@RequestMapping(value = "/user")
 public class UserPagesController {
     @Autowired
     private UserService userService;
@@ -47,6 +48,24 @@ public class UserPagesController {
         //OrderEntity entity = orderService.read(id);
         orderService.delete(id);
         //userService.getEntityByUsername(getPrincipal()).removeOrder(entity);
+    }
+
+    @RequestMapping(value = { "/settings"},method = RequestMethod.GET)
+    public ModelAndView getSettingsPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user",userService.getEntityByUsername(getPrincipal()));
+        modelAndView.setViewName("user/settings");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = { "/settings"},method = RequestMethod.POST)
+    public String updateSettings(@RequestBody UserEntity newEntity) {
+        UserEntity oldEntity = userService.getEntityByUsername(getPrincipal());
+        newEntity.setUserType(oldEntity.getUserType());
+        newEntity.setPassword(oldEntity.getPassword());
+        newEntity.setId(oldEntity.getId());
+        userService.update(newEntity);
+        return "{\"redirectUrl\":\"/home\"}";
     }
 
     private String getPrincipal(){

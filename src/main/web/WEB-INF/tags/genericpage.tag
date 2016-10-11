@@ -36,7 +36,7 @@
                     <div>
                         <security:authorize access="hasRole('ROLE_ANONYMOUS')">
                             <a href="${pageContext.request.contextPath}/loginform" class="btn btn-default">Вход</a>
-                            <a href="${pageContext.request.contextPath}/registrationform.jsp" class="btn btn-default">Регистрация</a>
+                            <a href="${pageContext.request.contextPath}/registrationform" class="btn btn-default">Регистрация</a>
                         </security:authorize>
                         <%--<c:if test="${empty sessionScope.first_name}">--%>
                             <%--<a href="${pageContext.request.contextPath}/loginform" class="btn btn-default">Вход</a>--%>
@@ -49,7 +49,7 @@
 
                             <a href="${pageContext.request.contextPath}/logout" class="btn btn-default">Выход</a>
                             <div class="btn">
-                                <a href="${pageContext.request.contextPath}/settings">
+                                <a href="${pageContext.request.contextPath}/user/settings">
                                     <div class="div-settings">
                                         <img src="http://s1.iconbird.com/ico/2014/1/567/w512h5121389807746applicationdefaulticon.png">
                                     </div>
@@ -67,7 +67,8 @@
 <div class="div-bucket-element">
     <h5 class="text-center">Привет,${!empty sessionScope.first_name ? sessionScope.first_name : "гость"}!</h5>
     <a href="${pageContext.request.contextPath}/bucket/bucketPage">
-        <img src="http://iconspot.ru/files/287498.png"
+        <%--<img src="http://iconspot.ru/files/287498.png"--%>
+            <img src=http://simpleicon.com/wp-content/uploads/shopping-cart-8.png
              width="70%"
              height="70%"
              class="center-block">

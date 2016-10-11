@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:genericpage>
     <jsp:attribute name="header">
          <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--%>
@@ -47,6 +48,11 @@
                         <div class="panel-heading">
                             <strong> Вход в аккаунт</strong>
                         </div>
+                        <c:if test="${not empty param.error}">
+                            <div  class="alert alert-danger">
+                                <strong>Ошибка!</strong> Неверный имя пользователя или пароль
+                            </div>
+                        </c:if>
                         <div class="panel-body">
                             <%--<form id="sign-in-form" method="POST">--%>
                                 <%--<form action="/login" method="POST">--%>

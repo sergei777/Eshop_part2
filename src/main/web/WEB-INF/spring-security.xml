@@ -8,6 +8,7 @@
 
     <http auto-config="true" use-expressions="true" >
         <form-login login-page="/loginform"
+                    authentication-failure-url="/loginform?error=1"
                 login-processing-url="/login"
                 authentication-success-handler-ref="customAuthenticationSuccessHandler"
                 default-target-url="/"/>

@@ -1,6 +1,11 @@
-package org.tylubz.entity;
+package org.tylubz.model.entity;
+
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +50,7 @@ public class UserEntity {
 //            mappedBy = "user")
     private List<OrderEntity> orders;
 
-    @OneToOne(cascade = {CascadeType.REMOVE,CascadeType.MERGE,CascadeType.REFRESH},
+    @OneToOne(cascade = {CascadeType.REMOVE,CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH},
             fetch = FetchType.EAGER)
             //fetch = FetchType.LAZY)
     @JoinColumn(name = "user_address")

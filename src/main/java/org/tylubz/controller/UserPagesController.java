@@ -4,14 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.tylubz.entity.OrderEntity;
-import org.tylubz.entity.UserEntity;
+import org.tylubz.model.entity.OrderEntity;
+import org.tylubz.model.entity.UserEntity;
+import org.tylubz.service.exceptions.EmailExistsException;
+import org.tylubz.service.exceptions.UserNameExistsException;
 import org.tylubz.service.interfaces.OrderService;
 import org.tylubz.service.interfaces.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -26,13 +32,22 @@ public class UserPagesController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/user")
-    public ModelAndView main() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("name", "Funny String!");
-        modelAndView.setViewName("index");
-        return modelAndView;
-    }
+
+//    @RequestMapping(value = "/user",method = RequestMethod.GET)
+//    public ModelMap redirect()  {
+//        ModelMap mm = new ModelMap();
+//        mm.put("Value","Value");
+//        new ModelAndView().ad
+//        return mm;
+//    }
+
+//    @RequestMapping(value = "/user")
+//    public ModelAndView main() {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("name", "Funny String!");
+//        modelAndView.setViewName("index");
+//        return modelAndView;
+//    }
     @RequestMapping(value = "/orders")
     public ModelAndView orders() {
         List<OrderEntity> orders = userService.getUserOrders(getPrincipal());
@@ -67,6 +82,10 @@ public class UserPagesController {
         userService.update(newEntity);
         return "{\"redirectUrl\":\"/home\"}";
     }
+//    @RequestMapping(value = { "/settings"},method = RequestMethod.GET)
+//    public ModelAndView getErrorPage(){
+//        return new ModelAndView("/error");
+//    }
 
     private String getPrincipal(){
         String userName = null;

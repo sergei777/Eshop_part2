@@ -4,12 +4,12 @@
     <persistence-unit name="myapp" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
-        <class>org.tylubz.entity.CategoryEntity</class>
-        <class>org.tylubz.entity.AddressEntity</class>
-        <class>org.tylubz.entity.OrderEntity</class>
-        <class>org.tylubz.entity.OrderHasProductEntity</class>
-        <class>org.tylubz.entity.ProductEntity</class>
-        <class>org.tylubz.entity.UserEntity</class>
+        <class>org.tylubz.model.entity.CategoryEntity</class>
+        <class>org.tylubz.model.entity.AddressEntity</class>
+        <class>org.tylubz.model.entity.OrderEntity</class>
+        <class>org.tylubz.model.entity.OrderHasProductEntity</class>
+        <class>org.tylubz.model.entity.ProductEntity</class>
+        <class>org.tylubz.model.entity.UserEntity</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/shopdb?useUnicode=yes&amp;characterEncoding=UTF-8"/>

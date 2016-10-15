@@ -1,6 +1,6 @@
 package org.tylubz.service.interfaces;
 
-import org.tylubz.entity.OrderEntity;
+import org.tylubz.model.entity.OrderEntity;
 
 /**
  * Created by Sergei on 26.09.2016.

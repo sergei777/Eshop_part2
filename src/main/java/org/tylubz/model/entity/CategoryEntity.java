@@ -1,4 +1,4 @@
-package org.tylubz.entity;
+package org.tylubz.model.entity;
 
 import javax.persistence.*;
 

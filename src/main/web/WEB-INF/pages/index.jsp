@@ -9,9 +9,9 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <link href="${pageContext.request.contextPath}/css/product.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <t:genericpage>
     <jsp:attribute name="header">
@@ -23,7 +23,7 @@
         <div class="container">
         <div class="col-md-10 col-md-offset-1">
             <div class="bs-example">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <div id="myCarousel" class="slide carousel" data-ride="carousel">
                     <!-- Carousel indicators -->
                     <ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>

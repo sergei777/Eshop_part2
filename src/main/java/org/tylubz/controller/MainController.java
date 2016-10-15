@@ -1,15 +1,22 @@
 package org.tylubz.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.tylubz.entity.UserEntity;
+import org.tylubz.model.entity.UserEntity;
+import org.tylubz.service.exceptions.EmailExistsException;
+import org.tylubz.service.exceptions.UserNameExistsException;
+import org.tylubz.service.impl.CustomServiceSecond;
 import org.tylubz.service.interfaces.UserService;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -17,8 +24,12 @@ import org.tylubz.service.interfaces.UserService;
  */
 @RestController
 public class MainController {
-//    @Autowired
-//    UserService service;
+
+    @Autowired
+    CustomServiceSecond serviceSecond;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = { "/", "/home" })
     public ModelAndView homePage() {
@@ -53,11 +64,35 @@ public class MainController {
 
     @RequestMapping(value = "/contacts", method = RequestMethod.GET)
     public ModelAndView contactsPage() {
+        serviceSecond.countResult();
         return new ModelAndView("/contacts");
+    }
+    @RequestMapping(value = "/registrationform", method = RequestMethod.GET)
+    public ModelAndView registrationFormPage(){
+        return new ModelAndView("registrationForm");
+    }
+
+    @RequestMapping(value = { "/registrationform"},method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    public String createNewUser(@RequestBody UserEntity entity){
+        try {
+            entity.setUserType("ROLE_USER");
+            userService.createNewUser(entity);
+        } catch (EmailExistsException e) {
+            e.printStackTrace();
+//            request.setAttribute("error","такой email существует!");
+            return "{\"error\":\"email\"}";
+            //return new ModelAndView();
+        } catch (UserNameExistsException e) {
+            e.printStackTrace();
+//            request.setAttribute("error","Такое имя пользователя существует!");
+            return "{\"error\":\"username\"}";
+            //return new ModelAndView();
+        }
+        return "{\"redirectUrl\":\"home\"}";
     }
 
     private String getPrincipal(){
-        String userName = null;
+        String userName;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             userName = ((UserDetails)principal).getUsername();

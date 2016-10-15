@@ -95,7 +95,7 @@
                             </form>
                         </div>
                         <div class="panel-footer ">
-                            Нет аккаунта? <a href="${pageContext.request.contextPath}/registrationform.jsp" onClick="">
+                            Нет аккаунта? <a href="${pageContext.request.contextPath}/registrationform" onClick="">
                             Зарегистрироваться здесь </a>
                         </div>
                     </div>

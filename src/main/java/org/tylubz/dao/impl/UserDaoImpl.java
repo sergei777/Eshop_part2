@@ -1,11 +1,10 @@
 package org.tylubz.dao.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.tylubz.dao.interfaces.UserDao;
-import org.tylubz.entity.UserEntity;
+import org.tylubz.model.entity.UserEntity;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -28,7 +27,14 @@ public class UserDaoImpl extends GenericDaoJpaImpl<UserEntity,Integer> implement
         Query query = entityManager.createQuery(queryString);
         query.setParameter("username", username);
         query.setParameter("password", password);
-        return (UserEntity) query.getResultList().get(0);
+        UserEntity result = null;
+        try{
+            result = (UserEntity) query.getSingleResult();
+        }
+        catch (NoResultException e){
+            //nothing to do
+        }
+        return result;
     }
 
     /**
@@ -42,6 +48,27 @@ public class UserDaoImpl extends GenericDaoJpaImpl<UserEntity,Integer> implement
         String queryString = "SELECT a FROM UserEntity AS a WHERE a.username = :username";
         Query query = entityManager.createQuery(queryString);
         query.setParameter("username", username);
-        return (UserEntity) query.getResultList().get(0);
+        UserEntity result = null;
+        try{
+            result = (UserEntity) query.getSingleResult();
+        }
+        catch (NoResultException e){
+            //nothing to do
+        }
+        return result;
+    }
+    @Override
+    public UserEntity getEntityByEmail(String email) {
+        String queryString = "SELECT a FROM UserEntity AS a WHERE a.email = :email";
+        Query query = entityManager.createQuery(queryString);
+        query.setParameter("email", email);
+        UserEntity result = null;
+        try{
+            result = (UserEntity) query.getSingleResult();
+        }
+        catch (NoResultException e){
+            //nothing to do
+        }
+        return result;
     }
 }

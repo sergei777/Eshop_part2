@@ -4,15 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.tylubz.entity.CategoryEntity;
-import org.tylubz.entity.ProductEntity;
+import org.tylubz.model.entity.CategoryEntity;
+import org.tylubz.model.entity.ProductEntity;
 import org.tylubz.service.interfaces.CategoryService;
 import org.tylubz.service.interfaces.OrderService;
 import org.tylubz.service.interfaces.ProductService;
 import org.tylubz.service.interfaces.UserService;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 
 /**
  * Created by Sergei on 07.10.2016.

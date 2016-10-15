@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.tylubz.dao.interfaces.GenericDao;
 import org.tylubz.dao.interfaces.OrderDao;
-import org.tylubz.entity.OrderEntity;
+import org.tylubz.model.entity.OrderEntity;
 import org.tylubz.service.interfaces.OrderService;
 
 /**

@@ -17,6 +17,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             crossorigin="anonymous"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/generictag.css" rel="stylesheet">
 </head>
@@ -40,7 +41,7 @@
                         </security:authorize>
                         <%--<c:if test="${empty sessionScope.first_name}">--%>
                             <%--<a href="${pageContext.request.contextPath}/loginform" class="btn btn-default">Вход</a>--%>
-                            <%--<a href="${pageContext.request.contextPath}/registrationform.jsp" class="btn btn-default">Регистрация</a>--%>
+                            <%--<a href="${pageContext.request.contextPath}/registrationForm.jsp" class="btn btn-default">Регистрация</a>--%>
                         <%--</c:if>--%>
                         <%--<c:if test="${!empty sessionScope.first_name}">--%>
                             <security:authorize access="hasRole('ROLE_USER')">

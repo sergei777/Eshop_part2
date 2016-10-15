@@ -19,6 +19,7 @@
 }
 
 .carousel{
-    border-radius: 55px; /* Opera 10.5, IE9, Saf5, Chrome, FF4 */
-    overflow:hidden;
+    border-radius: 55px 55px 55px 55px;
+    overflow: hidden;
+
 }

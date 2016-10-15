@@ -6,20 +6,21 @@
           http://www.springframework.org/schema/security
           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-    <http auto-config="true" use-expressions="true" >
+    <http auto-config="true" use-expressions="true"
+          access-denied-page="/error.jsp">
         <form-login login-page="/loginform"
                     authentication-failure-url="/loginform?error=1"
                 login-processing-url="/login"
                 authentication-success-handler-ref="customAuthenticationSuccessHandler"
                 default-target-url="/"/>
         <logout logout-url="/logout" logout-success-url="/"/>
-        <intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/rest**" access="hasRole('ROLE_APPLICATION')"/>
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/rest/**" access="hasRole('ROLE_APPLICATION')"/>
         <!--<intercept-url pattern="/dba**" access="hasRole('ADMIN') and hasRole('DBA')" />-->
-        <intercept-url pattern="/user**" access="hasRole('ROLE_USER')" />
-        <intercept-url pattern="/*" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_USER')" />
+        <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/**" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_USER')" />
         <anonymous username="guest" granted-authority="ROLE_ANONYMOUS"/>
-        <!--<form-login  authentication-failure-url="/error.jsp" />-->
+        <!--<form-login  authentication-failure-url="/user/error" />-->
     </http>
     <beans:bean id="customAuthenticationSuccessHandler" class="org.tylubz.controller.CustomAuthenticationSuccessHandler" />
 

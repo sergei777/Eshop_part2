@@ -169,6 +169,13 @@
             <version>2.7.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.5</version>
+        </dependency>
+
         <!--For correct Spring Security work -->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
         <!--<dependency>-->

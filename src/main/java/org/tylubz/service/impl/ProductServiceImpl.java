@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.tylubz.dao.interfaces.GenericDao;
 import org.tylubz.dao.interfaces.ProductDao;
-import org.tylubz.entity.ProductEntity;
-import org.tylubz.service.interfaces.GenericService;
+import org.tylubz.model.entity.ProductEntity;
 import org.tylubz.service.interfaces.ProductService;
 
 /**

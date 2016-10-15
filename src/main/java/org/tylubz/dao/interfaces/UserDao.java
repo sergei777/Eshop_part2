@@ -1,6 +1,6 @@
 package org.tylubz.dao.interfaces;
 
-import org.tylubz.entity.UserEntity;
+import org.tylubz.model.entity.UserEntity;
 
 /**
  * Created by Sergei on 28.09.2016.
@@ -8,4 +8,5 @@ import org.tylubz.entity.UserEntity;
 public interface UserDao extends GenericDao<UserEntity,Integer> {
     UserEntity getEntityByUsernameAndPassword(String username, String password);
     UserEntity getEntityByUsername(String username);
+    UserEntity getEntityByEmail(String email);
 }

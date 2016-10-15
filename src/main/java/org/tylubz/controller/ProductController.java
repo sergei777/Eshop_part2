@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.tylubz.entity.ProductEntity;
+import org.tylubz.model.entity.ProductEntity;
 import org.tylubz.service.interfaces.ProductService;
 
 import javax.servlet.http.HttpServletRequest;

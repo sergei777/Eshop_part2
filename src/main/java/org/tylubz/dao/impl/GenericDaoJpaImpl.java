@@ -4,9 +4,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.tylubz.dao.exceptions.DaoStoreException;
 import org.tylubz.dao.interfaces.GenericDao;
+import org.tylubz.model.data.ResultListWrapper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -109,6 +114,30 @@ public abstract class GenericDaoJpaImpl<E, PK extends Serializable>
     public List<E> readAll() {
         return getEntityManager().createQuery("select a from " + entityClass.getSimpleName() + " a")
                 .getResultList();
+    }
+
+    /**
+     * returns elements from database
+     *
+     * @param pageNumber - number of page
+     * @param pageSize - number of returned elements
+     * @return list wrapper which includes total number of
+     * elements and list of elements
+     */
+    @Override
+    public ResultListWrapper<E> read(int pageNumber, int pageSize) {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Long> countQuery = builder.createQuery(Long.class);
+        countQuery.select(builder.count(countQuery.from(entityClass)));
+        Long count = entityManager.createQuery(countQuery).getSingleResult();
+        CriteriaQuery<E> criteriaQuery = builder.createQuery(entityClass);
+        Root<E> from = criteriaQuery.from(entityClass);
+        CriteriaQuery<E> select = criteriaQuery.select(from);
+        TypedQuery<E> typedQuery = entityManager.createQuery(select);
+        typedQuery.setFirstResult((pageNumber-1) * pageSize);
+        typedQuery.setMaxResults(pageSize);
+        List<E> elementList = typedQuery.getResultList();
+        return new ResultListWrapper<>(count,elementList);
     }
 
 }

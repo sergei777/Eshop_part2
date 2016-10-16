@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.tylubz.dao.interfaces.GenericDao;
+import org.tylubz.model.data.ResultListWrapper;
 import org.tylubz.service.interfaces.GenericService;
 
 import java.io.Serializable;
@@ -55,5 +56,10 @@ public abstract class GenericServiceImpl<T,ID extends Serializable> implements G
     @Transactional
     public List<T> readAll(){
         return genericDao.readAll();
+    }
+
+    @Override
+    public ResultListWrapper<T> read(int pageNumber, int pageSize) {
+        return genericDao.read(pageNumber,pageSize);
     }
 }

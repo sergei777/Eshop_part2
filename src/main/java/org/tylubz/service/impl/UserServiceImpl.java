@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.tylubz.dao.interfaces.UserDao;
+import org.tylubz.model.data.ResultListWrapper;
 import org.tylubz.model.entity.OrderEntity;
 import org.tylubz.model.entity.UserEntity;
 import org.tylubz.service.exceptions.EmailExistsException;
@@ -56,6 +57,11 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public List<UserEntity> readAll() {
         return userDao.readAll();
+    }
+
+    @Override
+    public ResultListWrapper<UserEntity> read(int pageNumber, int pageSize) {
+        return null;
     }
 
     @Override

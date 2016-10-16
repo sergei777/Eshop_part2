@@ -1,6 +1,7 @@
 package org.tylubz.dao.interfaces;
 
 import org.tylubz.dao.exceptions.DaoStoreException;
+import org.tylubz.model.data.ResultListWrapper;
 
 import java.io.Serializable;
 import java.util.List;
@@ -56,4 +57,6 @@ public interface GenericDao<E, PK extends Serializable> {
      * @return list of entities
      */
     List<E> readAll();
+
+    ResultListWrapper<E> read(int pageNumber,int pageSize);
 }

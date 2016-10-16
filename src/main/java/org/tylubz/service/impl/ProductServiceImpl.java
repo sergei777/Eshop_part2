@@ -20,4 +20,9 @@ public class ProductServiceImpl extends GenericServiceImpl<ProductEntity,Integer
         super(genericDao);
         this.productDao = (ProductDao) genericDao;
     }
+
+    @Override
+    public long getTotalNumberOfElements() {
+        return productDao.getTotalNumberOfElements();
+    }
 }

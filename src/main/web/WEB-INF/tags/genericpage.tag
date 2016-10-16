@@ -29,7 +29,7 @@
             <div class="headerclass">
                 <ul class="nav navbar-nav center-block">
                     <li><a href="${pageContext.request.contextPath}/home">На главную</a></li>
-                    <li><a href="${pageContext.request.contextPath}/product/getProducts">Каталог товаров</a></li>
+                    <li><a href="${pageContext.request.contextPath}/product/getProducts/1/6">Каталог товаров</a></li>
                     <li><a href="${pageContext.request.contextPath}/contacts">Контакты</a></li>
                 </ul>
 

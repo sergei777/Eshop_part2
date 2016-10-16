@@ -41,7 +41,8 @@
                                     <input type="hidden" name="price" value="${item.price}">
                                     <input type="hidden" name="imgPath" value="${item.imagePath}">
                                     <input type="hidden" name="id" value="${item.id}">
-                                    <input type="image" src="${pageContext.request.contextPath}/images/${item.imagePath}"
+                                    <input type="image"
+                                           src="${pageContext.request.contextPath}/images/${item.imagePath}"
                                            alt="picture not found"
                                            class="img-rounded"
                                            width="100%"
@@ -52,6 +53,18 @@
                             </div>
                         </div>
                     </c:forEach>
+                    <div class="text-center col-md-12">
+                        <ul class="pagination">
+                            <li <c:if test="${pageNumber <=1 }"> style="display:none" class="disabled" </c:if>><a href=${pageContext.request.contextPath}/product/getProducts/${pageNumber-1}/6><<</a></li>
+                            <c:forEach var="i" begin="1" end="${numberOfPages}">
+                                <%--<li><a href="#">&laquo;</a></li>--%>
+                                <li  <c:if test="${i eq pageNumber}">class="active"</c:if>><a
+                                       href="${pageContext.request.contextPath}/product/getProducts/${i}/6"><c:out value="${i}" /></a></li>
+                                <%--<li><a href="#">&raquo;</a></li>--%>
+                            </c:forEach>
+                            <li <c:if test="${pageNumber == numberOfPages}"> style="display:none" </c:if>><a href=${pageContext.request.contextPath}/product/getProducts/${pageNumber+1}/6>>></a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-2">
                     <label>Цена:</label>
@@ -70,15 +83,17 @@
                                            pattern="^[1-9]\d*$">
                                 </div>
                             </div>
-                            <div class="input-group center-block">
-                                <input type="hidden" name="operation" value="updateProductsByPriceRange">
-                                <input type="submit" id="updateProductButton" class="btn btn-default center-block"
-                                       value="Показать">
-                            </div>
+                                <div class="input-group center-block">
+                                    <input type="hidden" name="operation" value="updateProductsByPriceRange">
+                                    <input type="submit" id="updateProductButton" style="margin-top: 10px"
+                                           class="btn btn-primary center-block"
+                                           value="Показать">
+                                </div>
                         </form>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </jsp:body>
 </t:genericpage>

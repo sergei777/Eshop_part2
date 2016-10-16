@@ -59,6 +59,7 @@ public abstract class GenericServiceImpl<T,ID extends Serializable> implements G
     }
 
     @Override
+    @Transactional
     public ResultListWrapper<T> read(int pageNumber, int pageSize) {
         return genericDao.read(pageNumber,pageSize);
     }

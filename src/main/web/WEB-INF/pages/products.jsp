@@ -55,46 +55,62 @@
                     </c:forEach>
                     <div class="text-center col-md-12">
                         <ul class="pagination">
-                            <li <c:if test="${pageNumber <=1 }"> style="display:none" class="disabled" </c:if>><a href=${pageContext.request.contextPath}/product/getProducts/${pageNumber-1}/6><<</a></li>
+                            <li <c:if test="${pageNumber <=1 }"> style="display:none" class="disabled" </c:if>><a
+                                    href=${pageContext.request.contextPath}/product/getProducts/${pageNumber-1}/6/${minPrice}/${maxPrice}><<</a>
+                            </li>
                             <c:forEach var="i" begin="1" end="${numberOfPages}">
                                 <%--<li><a href="#">&laquo;</a></li>--%>
-                                <li  <c:if test="${i eq pageNumber}">class="active"</c:if>><a
-                                       href="${pageContext.request.contextPath}/product/getProducts/${i}/6"><c:out value="${i}" /></a></li>
+                                <li <c:if test="${i eq pageNumber}">class="active"</c:if>><a
+                                        href="${pageContext.request.contextPath}/product/getProducts/${i}/6/${minPrice}/${maxPrice}"><c:out
+                                        value="${i}"/></a></li>
                                 <%--<li><a href="#">&raquo;</a></li>--%>
                             </c:forEach>
-                            <li <c:if test="${pageNumber == numberOfPages}"> style="display:none" </c:if>><a href=${pageContext.request.contextPath}/product/getProducts/${pageNumber+1}/6>>></a></li>
+                            <li <c:if test="${pageNumber == numberOfPages}"> style="display:none" </c:if>><a
+                                    href=${pageContext.request.contextPath}/product/getProducts/${pageNumber+1}/6/${minPrice}/${maxPrice}>>></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <label>Цена:</label>
                     <div class="brd">
-                        <form id="updateProductByPriceRange" action="${pageContext.request.contextPath}/product-list"
+                        <form id="updateProductByPriceRange"  name = "updateProductByPriceRange" action="javascript:void(null);" onsubmit="acall()"
                               method="get">
                             <div class="form-group">
                                 <div class="input-group">
                                     <label for="minPriceId">От:</label>
-                                    <input type="text" class="form-control" name="minPrice" id="minPriceId" required
+                                    <input type="text" class="form-control" name="minPrice" value="${minPrice}" id="minPriceId" required
                                            pattern="^[1-9]\d*$">
                                 </div>
                                 <div class="input-group">
                                     <label for="maxPriceId">До:</label>
-                                    <input type="text" class="form-control" name="maxPrice" id="maxPriceId" required
+                                    <input type="text" class="form-control" name="maxPrice"  value="${maxPrice}" id="maxPriceId" required
                                            pattern="^[1-9]\d*$">
                                 </div>
                             </div>
-                                <div class="input-group center-block">
-                                    <input type="hidden" name="operation" value="updateProductsByPriceRange">
-                                    <input type="submit" id="updateProductButton" style="margin-top: 10px"
-                                           class="btn btn-primary center-block"
-                                           value="Показать">
-                                </div>
+                            <div class="input-group center-block">
+                                <input type="hidden" name="operation" value="updateProductsByPriceRange">
+                                <input type="submit" id="updateProductButton" style="margin-top: 10px"
+                                       class="btn btn-primary center-block"
+                                       value="Показать">
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
         </div>
+        <script>
+            function acall() {
+                var data = {
+                    minPrice: document.updateProductByPriceRange.elements['minPrice'].value,
+                    maxPrice: document.updateProductByPriceRange.elements['maxPrice'].value,
+                };
+                var str = "${pageContext.request.contextPath}/product/getProducts/${pageNumber}/6/"+data.minPrice+"/"+data.maxPrice;
+                alert(str);
+                $("#updateProductByPriceRange").attr("action", str);
+            }
+        </script>
     </jsp:body>
 </t:genericpage>
 </head>

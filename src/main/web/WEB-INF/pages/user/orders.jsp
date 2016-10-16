@@ -72,7 +72,7 @@
 
                             </td>
                         <td>
-                            <form action="/user-list" method="get">
+                            <form action="javascript:void(null);" method="get">
                             <input type="hidden" id="operation" name="operation" value=${item.id}>
                             <input type="submit" class="btn btn-primary" value="Удалить заказ">
                             </form>
@@ -81,8 +81,6 @@
                     </tr>
                 </c:forEach>
                 </tbody>
-
-
             </table>
         </div>
     </jsp:body>

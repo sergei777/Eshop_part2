@@ -20,4 +20,9 @@ public class OrderServiceImpl extends GenericServiceImpl<OrderEntity,Integer> im
         super(genericDao);
         this.orderDao = (OrderDao) genericDao;
     }
+
+    @Override
+    public OrderEntity createOrder(OrderEntity entity) {
+        return orderDao.create(entity);
+    }
 }

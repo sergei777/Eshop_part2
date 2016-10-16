@@ -27,7 +27,7 @@ public class BucketController {
         }
         shoppingCart.addUnit(unit);
         session.setAttribute("shoppingCart", shoppingCart);
-        return "{\"redirectUrl\":\"getProducts\"}";
+        return "{\"redirectUrl\":\"getProducts/1/6\"}";
     }
     @RequestMapping(value = "/removeItemById")
     @ResponseStatus(value = HttpStatus.OK)

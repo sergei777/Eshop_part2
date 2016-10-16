@@ -56,17 +56,17 @@
                     <div class="text-center col-md-12">
                         <ul class="pagination">
                             <li <c:if test="${pageNumber <=1 }"> style="display:none" class="disabled" </c:if>><a
-                                    href=${pageContext.request.contextPath}/product/getProducts/${pageNumber-1}/6/${minPrice}/${maxPrice}><<</a>
+                                    href="javascript:createUrl(${pageNumber-1});"><<</a>
                             </li>
                             <c:forEach var="i" begin="1" end="${numberOfPages}">
                                 <%--<li><a href="#">&laquo;</a></li>--%>
                                 <li <c:if test="${i eq pageNumber}">class="active"</c:if>><a
-                                        href="${pageContext.request.contextPath}/product/getProducts/${i}/6/${minPrice}/${maxPrice}"><c:out
+                                        href="javascript:createUrl(${i});"><c:out
                                         value="${i}"/></a></li>
                                 <%--<li><a href="#">&raquo;</a></li>--%>
                             </c:forEach>
                             <li <c:if test="${pageNumber == numberOfPages}"> style="display:none" </c:if>><a
-                                    href=${pageContext.request.contextPath}/product/getProducts/${pageNumber+1}/6/${minPrice}/${maxPrice}>>></a>
+                                    href="javascript:createUrl(${pageNumber+1});">>></a>
                             </li>
                         </ul>
                     </div>
@@ -101,13 +101,19 @@
         </div>
         </div>
         <script>
+            function createUrl(i){
+                var urlStr = "${pageContext.request.contextPath}/product/getProducts/".concat(i).concat("/6/");
+                <c:if test="${!empty minPrice}">
+                urlStr = urlStr.concat("${minPrice}/${maxPrice}");
+                </c:if>
+                window.location.href = urlStr;
+            }
             function acall() {
                 var data = {
                     minPrice: document.updateProductByPriceRange.elements['minPrice'].value,
                     maxPrice: document.updateProductByPriceRange.elements['maxPrice'].value,
                 };
                 var str = "${pageContext.request.contextPath}/product/getProducts/${pageNumber}/6/"+data.minPrice+"/"+data.maxPrice;
-                alert(str);
                 $("#updateProductByPriceRange").attr("action", str);
             }
         </script>

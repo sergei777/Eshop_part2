@@ -97,10 +97,8 @@ public abstract class GenericDaoJpaImpl<E, PK extends Serializable>
         try {
             E entity = getEntityManager().find(entityClass, id);
             getEntityManager().remove(entity);
-            int g = 4;
         }
         catch (Exception ex){
-            System.out.println(ex);
             ex.printStackTrace();
         }
     }

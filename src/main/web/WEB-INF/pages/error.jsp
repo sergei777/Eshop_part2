@@ -14,7 +14,7 @@
     <div class="error-desc">
         К сожалению, запрашиваемая вами страница не найдена или не существует <br/>
         <div><br/>
-            <a href="${pageContext.request.contextPath}/index.jsp" class="btn btn-primary"><span
+            <a href="${pageContext.request.contextPath}/" class="btn btn-primary"><span
                     class="glyphicon glyphicon-home"></span> Возврат на главную</a>
         </div>
     </div>

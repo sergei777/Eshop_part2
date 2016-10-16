@@ -5,15 +5,16 @@
           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
           http://www.springframework.org/schema/security
           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
-
+    <global-method-security pre-post-annotations="enabled"/>
     <http auto-config="true" use-expressions="true"
-          access-denied-page="/error.jsp">
+          access-denied-page="/error">
         <form-login login-page="/loginform"
                     authentication-failure-url="/loginform?error=1"
                 login-processing-url="/login"
                 authentication-success-handler-ref="customAuthenticationSuccessHandler"
                 default-target-url="/"/>
         <logout logout-url="/logout" logout-success-url="/"/>
+
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/rest/**" access="hasRole('ROLE_APPLICATION')"/>
         <!--<intercept-url pattern="/dba**" access="hasRole('ADMIN') and hasRole('DBA')" />-->

@@ -67,7 +67,7 @@ public class UserDaoImpl extends GenericDaoJpaImpl<UserEntity,Integer> implement
             result = (UserEntity) query.getSingleResult();
         }
         catch (NoResultException e){
-            //nothing to do
+            //nothing
         }
         return result;
     }

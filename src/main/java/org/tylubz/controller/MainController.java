@@ -67,6 +67,11 @@ public class MainController {
         serviceSecond.countResult();
         return new ModelAndView("/contacts");
     }
+
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public ModelAndView errorPage() {
+        return new ModelAndView("/error");
+    }
     @RequestMapping(value = "/registrationform", method = RequestMethod.GET)
     public ModelAndView registrationFormPage(){
         return new ModelAndView("registrationForm");

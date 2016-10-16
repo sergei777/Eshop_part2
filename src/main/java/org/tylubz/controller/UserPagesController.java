@@ -87,6 +87,7 @@ public class UserPagesController {
         } catch (DaoStoreException e) {
             e.printStackTrace();
         }
+        session.setAttribute("shoppingCart",new ShoppingCart());
         orderService.create(entity);
         return "{\"redirectUrl\":\"/home\"}";
     }

@@ -53,15 +53,15 @@ public class ProductController  {
         modelAndView.setViewName("products");
         return modelAndView;
     }
-    @RequestMapping(value = "/getProducts/")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView controllerAdmin(){
-        List<ProductEntity> productList = productService.readAll();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("products",productList);
-        modelAndView.setViewName("/admin/productList");
-        return modelAndView;
-    }
+//    @RequestMapping(value = "/getProducts/")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    public ModelAndView controllerAdmin(){
+//        List<ProductEntity> productList = productService.readAll();
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("products",productList);
+//        modelAndView.setViewName("/admin/productList");
+//        return modelAndView;
+//    }
 
     @RequestMapping(value = "/getProductItem")
     public ModelAndView getProductItem() {

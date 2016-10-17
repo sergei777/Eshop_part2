@@ -16,7 +16,9 @@ import org.tylubz.service.exceptions.UserNameExistsException;
 import org.tylubz.service.impl.CustomServiceSecond;
 import org.tylubz.service.interfaces.UserService;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -69,7 +71,8 @@ public class MainController {
     }
 
     @RequestMapping(value = "/error", method = RequestMethod.GET)
-    public ModelAndView errorPage() {
+    public ModelAndView errorPage(HttpServletResponse response) {
+        response.setHeader("Content-Type", "text/html; charset=UTF-8");
         return new ModelAndView("/error");
     }
     @RequestMapping(value = "/registrationform", method = RequestMethod.GET)

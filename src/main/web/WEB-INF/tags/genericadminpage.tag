@@ -30,7 +30,7 @@
                 </ul>
                 <div class="div-bucket-buttons div-button">
                     <div>
-                        <a href="${pageContext.request.contextPath}/logout" class="btn btn-default">Выход</a>
+                        <a href="${pageContext.request.contextPath}/logout" class="btn btn-default" style="margin: 10px">Выход</a>
                     </div>
                 </div>
             </div>

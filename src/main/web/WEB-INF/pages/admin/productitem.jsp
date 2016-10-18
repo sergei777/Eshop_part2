@@ -15,7 +15,7 @@
             $(document).ready(function () {
                 $(document).on('click', '#submitUpdate', function (e) {
                     e.preventDefault(); // avoid to execute the actual submit of the form.z
-                    var url = "/product-list"; // the script where you handle the form input.
+                    var url = "${pageContext.request.contextPath}/admin/updateProductInfo"; // the script where you handle the form input.
                     var smt = $("#updateProduct");
                     $.ajax({
                         type: "POST",
@@ -112,13 +112,14 @@
                     <br>
                     <label>Путь к файлу</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="img_path" value="${productItem.imagePath}"
+                        <input type="text" class="form-control" name="imagePath" value="${productItem.imagePath}"
                                required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                     <br>
                 </div>
                 <div class="form-group">
+                    <input type="hidden" name="id" value="${productItem.id}">
                     <input type="submit" name="submit" id="submitUpdate" value="Сохранить изменения"
                            class="btn btn-success center-block">
                 </div>

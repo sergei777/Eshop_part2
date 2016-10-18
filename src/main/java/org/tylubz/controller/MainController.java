@@ -13,11 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.tylubz.model.entity.UserEntity;
 import org.tylubz.service.exceptions.EmailExistsException;
 import org.tylubz.service.exceptions.UserNameExistsException;
-import org.tylubz.service.impl.CustomServiceSecond;
+import org.tylubz.service.impl.RemoteRestService;
 import org.tylubz.service.interfaces.UserService;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
@@ -28,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController {
 
     @Autowired
-    CustomServiceSecond serviceSecond;
+    RemoteRestService serviceSecond;
 
     @Autowired
     private UserService userService;

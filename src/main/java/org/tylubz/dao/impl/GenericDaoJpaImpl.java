@@ -28,6 +28,7 @@ import java.util.List;
 public abstract class GenericDaoJpaImpl<E, PK extends Serializable>
         implements GenericDao<E, PK> {
 
+
     protected Class<E> entityClass;
     protected EntityManager entityManager;
 
@@ -46,6 +47,14 @@ public abstract class GenericDaoJpaImpl<E, PK extends Serializable>
         return entityManager;
     }
 
+
+    public Class<E> getEntityClass() {
+        return entityClass;
+    }
+
+    public void setEntityClass(Class<E> entityClass) {
+        this.entityClass = entityClass;
+    }
     /**
      * creates new entity
      *
@@ -67,7 +76,7 @@ public abstract class GenericDaoJpaImpl<E, PK extends Serializable>
      */
     @Override
     public E read(PK id) {
-        return getEntityManager().find(entityClass, id);
+        return entityManager.find(entityClass, id);
     }
 
     /**

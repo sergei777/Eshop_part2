@@ -23,14 +23,14 @@
         <div class="modal-body">
 
 
-            <form id="update" action="/user-list" method="POST">
+            <form id="update" action="${pageContext.request.contextPath}/admin/updateUserInfo" method="POST">
                 <!---form--->
                 <div class="form-group">
                     <!---input width--->
                     <div class="col-xs-6">
                         <label>Имя</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" name="first_name"
+                            <input type="text" class="form-control" name="firstName"
                                    value="${user.firstName}" placeholder="Введите имя пользователья"
                                    required>
                                             <span class="input-group-addon"><span
@@ -39,7 +39,7 @@
                         <br>
                         <label>Логин</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" name="username"
+                            <input type="text" disabled class="form-control" name="username"
                                    value="${user.username}" placeholder="Введите логин" required>
                                             <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
@@ -52,17 +52,18 @@
                     <div class="col-xs-6">
                         <label>Фамилия</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" name="last_name"
+                            <input type="text" class="form-control" name="secondName"
                                    value="${user.secondName}" placeholder="Введите фамилию" required>
                                             <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
 
                         <br>
-                        <label>Пароль</label>
+                        <label>Дата рождения</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" name="password"
-                                   placeholder="Введите пароль" required>
+                            <input type="date" class="form-control" name="date"
+                                   value="${user.birthDate}" placeholder="Введите дату рождения"
+                                   required>
                                             <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
@@ -71,26 +72,26 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <label>Дата рождения</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="birth_date"
-                                   value="${user.birthDate}" placeholder="Введите дату рождения"
-                                   required>
-                                            <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></span>
-                        </div>
-                        <!----------------------------break------------------------------------------------------------->
-                        <br>
-                    </div>
-                </div>
+                <%--<div class="form-group">--%>
+                    <%--<div class="col-xs-12">--%>
+                        <%--<label>Дата рождения</label>--%>
+                        <%--<div class="input-group">--%>
+                            <%--<input type="text" class="form-control" name="birth_date"--%>
+                                   <%--value="${user.birthDate}" placeholder="Введите дату рождения"--%>
+                                   <%--required>--%>
+                                            <%--<span class="input-group-addon"><span--%>
+                                                    <%--class="glyphicon glyphicon-asterisk"></span></span>--%>
+                        <%--</div>--%>
+                        <%--<!----------------------------break------------------------------------------------------------->--%>
+                        <%--<br>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
 
                 <div class="form-group">
                     <div class="col-xs-12">
                         <label>E-mail</label>
                         <div class="input-group">
-                            <input type="email" class="form-control" name="email" value="${user.email}"
+                            <input type="email" disabled class="form-control" name="email" value="${user.email}"
                                    placeholder="Введите e-mail" required>
                                             <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
@@ -101,9 +102,9 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="hidden" name="operation" value="updateUserMainInformation">
-                    <input type="hidden" name="id" value="${user.id}">
-                    <input type="hidden" name="userType" value="admin">
+                    <input type="hidden" name="username" value="${user.username}">
+                    <input type="hidden" name="email" value="${user.email}">
+                    <%--<input type="hidden" name="userType" value="admin">--%>
                     <input type="submit" form="update" name="submit" id="submit"
                            value="Сохранить изменения" class="btn btn-success center-block">
                 </div>

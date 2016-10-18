@@ -49,7 +49,6 @@ public abstract class GenericServiceImpl<T,ID extends Serializable> implements G
     @Transactional
     public void delete(ID id) {
         genericDao.delete(id);
-        int a=3;
     }
 
     @Override

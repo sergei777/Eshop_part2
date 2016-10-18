@@ -39,7 +39,7 @@
                             <td>
                                 <form action="updateUserPage" method="get">
                                     <input type="hidden" name="id" value="${item.id}">
-                                    <input type="submit" class="btn" value="Редактировать">
+                                    <input type="submit" class="btn btn-primary" value="Редактировать">
                                 </form>
                             </td>
                         </tr>

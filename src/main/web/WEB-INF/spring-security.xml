@@ -23,7 +23,7 @@
         <anonymous username="guest" granted-authority="ROLE_ANONYMOUS"/>
         <!--<form-login  authentication-failure-url="/user/error" />-->
     </http>
-    <beans:bean id="customAuthenticationSuccessHandler" class="org.tylubz.controller.CustomAuthenticationSuccessHandler" />
+    <beans:bean id="customAuthenticationSuccessHandler" class="org.tylubz.security.CustomAuthenticationSuccessHandler" />
 
     <authentication-manager alias="authenticationManager">
     <authentication-provider user-service-ref="userDetailsServiceImpl">

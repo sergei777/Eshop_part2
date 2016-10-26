@@ -7,10 +7,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.tylubz.dao.impl.UserDaoImpl;
 import org.tylubz.dao.interfaces.UserDao;
 import org.tylubz.model.entity.UserEntity;
+import org.tylubz.security.UserDetailsServiceImpl;
 
 import javax.persistence.NoResultException;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Sergei on 18.10.2016.

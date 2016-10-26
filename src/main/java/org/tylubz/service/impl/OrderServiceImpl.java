@@ -9,7 +9,7 @@ import org.tylubz.model.entity.OrderEntity;
 import org.tylubz.service.interfaces.OrderService;
 
 /**
- * Created by Sergei on 02.10.2016.
+ * Implementation of OrderService interface
  */
 @Service
 public class OrderServiceImpl extends GenericServiceImpl<OrderEntity,Integer> implements OrderService {

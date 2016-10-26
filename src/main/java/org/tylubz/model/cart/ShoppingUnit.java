@@ -1,4 +1,4 @@
-package org.tylubz.cart;
+package org.tylubz.model.cart;
 
 /**
  * Item of shopping cart, which contains

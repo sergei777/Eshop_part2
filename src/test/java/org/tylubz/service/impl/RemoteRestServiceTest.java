@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.tylubz.service.impl.OrderServiceImpl;
+import org.tylubz.service.impl.RemoteRestService;
 import org.tylubz.service.interfaces.OrderService;
 
 import static org.junit.Assert.*;

@@ -1,5 +1,6 @@
 package org.tylubz.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,83 +21,101 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /**
- * Created by Sergei on 25.09.2016.
+ * Class for getting
+ * guest pages
+ *
  */
 @RestController
-public class MainController {
+public class GuestPagesController {
 
-    @Autowired
-    RemoteRestService serviceSecond;
+    final static Logger logger = Logger.getLogger(GuestPagesController.class);
 
     @Autowired
     private UserService userService;
 
+    /**
+     * getting home page
+     * @return home page
+     */
     @RequestMapping(value = { "/", "/home" })
     public ModelAndView homePage() {
+        logger.info("main page is choosing");
         return new ModelAndView("index");
     }
 
-//    @RequestMapping(value = "/controller")
-//    public ModelAndView controller() {
-//        UserEntity userEntity = service.read(1);
-//        System.out.println(userEntity.getFirstName());
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject("address", userEntity);
-//        modelAndView.setViewName("index");
-//        return modelAndView;
-//    }
+    /**
+     * getting login form
+     * @return login form
+     */
     @RequestMapping(value = "/loginform")
     public ModelAndView login() {
         return new ModelAndView("loginform");
     }
 
+    /**
+     * redirects to admin page
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/admin")
     public String adminPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
         return "/admin/admin";
     }
 
-    @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
-    public String accessDeniedPage(ModelMap model) {
-        model.addAttribute("user", getPrincipal());
-        return "accessDenied";
-    }
-
+    /**
+     * getting contacts page
+     * @return contacts page
+     */
     @RequestMapping(value = "/contacts", method = RequestMethod.GET)
     public ModelAndView contactsPage() {
-        serviceSecond.countResult();
         return new ModelAndView("/contacts");
     }
 
+    /**
+     * getting error page
+     * @param response
+     * @return error page
+     */
     @RequestMapping(value = "/error", method = RequestMethod.GET)
     public ModelAndView errorPage(HttpServletResponse response) {
         response.setHeader("Content-Type", "text/html; charset=UTF-8");
         return new ModelAndView("/error");
     }
+
+    /**
+     * getting registration form
+     * @return registratin form
+     */
     @RequestMapping(value = "/registrationform", method = RequestMethod.GET)
     public ModelAndView registrationFormPage(){
         return new ModelAndView("registrationForm");
     }
 
+    /**
+     * creates new user in database
+     * @param entity user
+     * @return value of operation
+     */
     @RequestMapping(value = { "/registrationform"},method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     public String createNewUser(@RequestBody UserEntity entity){
         try {
             entity.setUserType("ROLE_USER");
             userService.createNewUser(entity);
         } catch (EmailExistsException e) {
-            e.printStackTrace();
-//            request.setAttribute("error","такой email существует!");
+            logger.warn("Curent email exist!");
             return "{\"error\":\"email\"}";
-            //return new ModelAndView();
         } catch (UserNameExistsException e) {
-            e.printStackTrace();
-//            request.setAttribute("error","Такое имя пользователя существует!");
+            logger.warn("Curent username exist" );
             return "{\"error\":\"username\"}";
-            //return new ModelAndView();
         }
         return "{\"redirectUrl\":\"home\"}";
     }
 
+    /**
+     * getting name of the user
+     * @return name of the user
+     */
     private String getPrincipal(){
         String userName;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

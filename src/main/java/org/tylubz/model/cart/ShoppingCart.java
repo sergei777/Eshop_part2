@@ -1,4 +1,4 @@
-package org.tylubz.cart;
+package org.tylubz.model.cart;
 
 import java.util.ArrayList;
 import java.util.List;

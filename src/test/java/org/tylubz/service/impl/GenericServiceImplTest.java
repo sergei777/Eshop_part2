@@ -7,6 +7,8 @@ import org.tylubz.dao.impl.GenericDaoJpaImpl;
 import org.tylubz.dao.impl.ProductDaoImpl;
 import org.tylubz.dao.interfaces.GenericDao;
 import org.tylubz.model.entity.ProductEntity;
+import org.tylubz.service.impl.GenericServiceImpl;
+import org.tylubz.service.impl.ProductServiceImpl;
 
 import static org.junit.Assert.*;
 

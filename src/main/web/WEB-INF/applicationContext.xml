@@ -28,6 +28,7 @@
     <context:annotation-config/>
     <context:component-scan base-package="org.tylubz.service" />
     <context:component-scan base-package="org.tylubz.dao" />
+    <context:component-scan base-package="org.tylubz.security" />
 
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
     <!--<bean class="org.springframework.transaction.jta.JtaTransactionManager"/>-->

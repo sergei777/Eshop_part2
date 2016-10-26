@@ -13,7 +13,7 @@ import org.tylubz.service.interfaces.ProductService;
 import java.util.List;
 
 /**
- * Created by Sergei on 02.10.2016.
+ * Implementation of ProductService interface
  */
 @Service
 public class ProductServiceImpl extends GenericServiceImpl<ProductEntity,Integer> implements ProductService {

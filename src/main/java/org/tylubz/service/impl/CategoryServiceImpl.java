@@ -9,7 +9,7 @@ import org.tylubz.model.entity.CategoryEntity;
 import org.tylubz.service.interfaces.CategoryService;
 
 /**
- * Created by Sergei on 10.10.2016.
+ * Implementation of CategoryService interface
  */
 @Service
 public class CategoryServiceImpl extends GenericServiceImpl<CategoryEntity,Integer> implements CategoryService {

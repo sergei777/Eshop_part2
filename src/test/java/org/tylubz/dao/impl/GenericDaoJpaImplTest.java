@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.tylubz.dao.impl.GenericDaoJpaImpl;
+import org.tylubz.dao.impl.ProductDaoImpl;
 import org.tylubz.model.entity.ProductEntity;
 
 import javax.persistence.EntityManager;

@@ -25,7 +25,7 @@
                 <ul class="nav navbar-nav center-block">
                     <li><a href="${pageContext.request.contextPath}/admin/home">На главную</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/userList">Пользователи</a></li>
-                    <li><a href="${pageContext.request.contextPath}/admin/orderList">Заказы</a></li>
+                    <%--<li><a href="${pageContext.request.contextPath}/admin/orderList">Заказы</a></li>--%>
                     <li><a href="${pageContext.request.contextPath}/admin/productList/">Управление товарами</a></li>
                 </ul>
                 <div class="div-bucket-buttons div-button">

@@ -10,6 +10,7 @@ import org.tylubz.model.entity.OrderEntity;
 import org.tylubz.model.entity.UserEntity;
 import org.tylubz.service.exceptions.EmailExistsException;
 import org.tylubz.service.exceptions.UserNameExistsException;
+import org.tylubz.service.impl.UserServiceImpl;
 
 import java.util.List;
 

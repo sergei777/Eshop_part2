@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 
 import org.mockito.runners.MockitoJUnitRunner;
 
+import org.tylubz.dao.impl.UserDaoImpl;
 import org.tylubz.model.entity.UserEntity;
 
 
@@ -31,21 +32,20 @@ public class UserDaoImplTest {
     public void testGetEntityByUsername() throws Exception {
         Mockito.when(userDaoImpl.getEntityByUsername("username")).thenReturn(entity);
         Assert.assertEquals(entity,userDaoImpl.getEntityByUsername("username"));
-        Assert.assertNotEquals(entity,userDaoImpl.getEntityByUsername("wrong argument"));
+        Assert.assertNotSame(entity,userDaoImpl.getEntityByUsername("wrong argument"));
     }
 
     @Test
     public void testGetEntityByUsernameAndPassword() throws Exception {
         Mockito.when(userDaoImpl.getEntityByUsernameAndPassword("username","password")).thenReturn(entity);
         Assert.assertEquals(entity,userDaoImpl.getEntityByUsernameAndPassword("username","password"));
-        Assert.assertNotEquals(entity,userDaoImpl.getEntityByUsernameAndPassword("wrong name","wrong pass"));
+        Assert.assertNotSame(entity,userDaoImpl.getEntityByUsernameAndPassword("wrong name","wrong pass"));
     }
 
     @Test
     public void testGetEntityByEmail() throws Exception {
         Mockito.when(userDaoImpl.getEntityByEmail("email@mail.ru")).thenReturn(entity);
         Assert.assertEquals(entity,userDaoImpl.getEntityByEmail("email@mail.ru"));
-        Assert.assertNotEquals(entity,userDaoImpl.getEntityByEmail("wrongemail@mail.ru"));
-
+        Assert.assertNotSame(entity,userDaoImpl.getEntityByEmail("wrongemail@mail.ru"));
     }
 }

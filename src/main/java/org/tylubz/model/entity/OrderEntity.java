@@ -29,22 +29,16 @@ public class OrderEntity {
     private String orderStatus;
 
 
-    @OneToOne(//orphanRemoval=true,cascade = CascadeType.ALL,
-            cascade = CascadeType.ALL,
-            //fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
     @JoinColumn(name = "user_addressid")
     private AddressEntity address;
 
-    @ManyToOne(//cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
-            //fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    @ManyToMany(//cascade = CascadeType.REFRESH,
-            fetch = FetchType.EAGER)
-            //fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "order_has_product",
             joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"))

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * Created by Sergei on 02.10.2016.
+ * Class for getting products
  */
 @RestController
 @RequestMapping(value = "/product")
@@ -23,6 +23,12 @@ public class ProductController  {
     @Autowired
     ProductService productService;
 
+    /**
+     * returns the page with products
+     * @param pageNumber number of page
+     * @param pageSize size of page
+     * @return
+     */
     @RequestMapping(value = "/getProducts/{pageNumber}/{pageSize}",method = RequestMethod.GET)
     public ModelAndView controller(@PathVariable Integer pageNumber,@PathVariable Integer pageSize) {
         ResultListWrapper<ProductEntity> listWrapper = productService.read(pageNumber,pageSize);
@@ -53,16 +59,11 @@ public class ProductController  {
         modelAndView.setViewName("products");
         return modelAndView;
     }
-//    @RequestMapping(value = "/getProducts/")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
-//    public ModelAndView controllerAdmin(){
-//        List<ProductEntity> productList = productService.readAll();
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject("products",productList);
-//        modelAndView.setViewName("/admin/productList");
-//        return modelAndView;
-//    }
 
+    /**
+     * getting item page
+     * @return
+     */
     @RequestMapping(value = "/getProductItem")
     public ModelAndView getProductItem() {
         ModelAndView modelAndView = new ModelAndView();
@@ -70,6 +71,13 @@ public class ProductController  {
         return modelAndView;
     }
 
+    /**
+     * Count the result of division
+     * by total size and page size
+     * @param totalSize
+     * @param pageSize
+     * @return
+     */
     private Integer getTotalNumberOfPages(Long totalSize,Integer pageSize){
         return (int) Math.ceil(totalSize/(double)pageSize);
     }

@@ -14,7 +14,7 @@ import java.util.*;
 
 
 /**
- * Created by Sergei on 11.10.2016.
+ * Class for generating data
  */
 @Service
 public class RemoteRestService {

@@ -1,4 +1,4 @@
-package org.tylubz.service.impl;
+package org.tylubz.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,7 +16,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Sergei on 28.09.2016.
+ * Custom implementation of
+ * user details service
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

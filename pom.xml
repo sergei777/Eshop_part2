@@ -47,8 +47,8 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
+            <version>4.8</version>
+            <!--<scope>test</scope>-->
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
         <dependency>
@@ -125,25 +125,7 @@
             <artifactId>spring-security-web</artifactId>
             <version>${spring-security-framework-version}</version>
             <exclusions>
-                <!--<exclusion>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--<artifactId>spring-tx</artifactId>-->
-                <!--</exclusion>-->
 
-                <!--<exclusion>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--<artifactId>spring-jdbc</artifactId>-->
-                <!--</exclusion>-->
-
-                <!--<exclusion>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--<artifactId>spring-aop</artifactId>-->
-                <!--</exclusion>-->
-
-                <!--<exclusion>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--<artifactId>spring-expression</artifactId>-->
-                <!--</exclusion>-->
             </exclusions>
         </dependency>
         <dependency>
@@ -183,35 +165,7 @@
             <version>2.5</version>
         </dependency>
 
-        <!--For correct Spring Security work -->
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework</groupId>-->
-        <!--<artifactId>spring-jdbc</artifactId>-->
-        <!--<version>${spring-security-framework-version}</version>-->
-        <!--</dependency>-->
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-expression &ndash;&gt;-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework</groupId>-->
-        <!--<artifactId>spring-expression</artifactId>-->
-        <!--<version>${spring-security-framework-version}</version>-->
-        <!--</dependency>-->
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-aop &ndash;&gt;-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework</groupId>-->
-        <!--<artifactId>spring-aop</artifactId>-->
-        <!--<version>${spring-security-framework-version}</version>-->
-        <!--</dependency>-->
 
-
-        <!--end-->
-
-        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
-        <!--<dependency>-->
-        <!--<groupId>org.aspectj</groupId>-->
-        <!--<artifactId>aspectjrt</artifactId>-->
-        <!--<version>1.7.3</version>-->
-        <!--</dependency>-->
 
         <!--https://mvnrepository.com/artifact/jstl/jstl -->
         <dependency>
@@ -225,16 +179,25 @@
             <version>1.6.1</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Force using the latest JUnit 47 provider -->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.9.10</version>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-junit47</artifactId>
             <scope>test</scope>
+            <version>2.8</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
         </dependency>
 
     </dependencies>
     <build>
         <finalName>Eshop_second</finalName>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+        <testOutputDirectory>target/test-classes</testOutputDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -259,7 +222,29 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>1.1.0.Alpha11</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.8</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+
+
+
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>

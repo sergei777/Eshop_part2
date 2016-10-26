@@ -6,13 +6,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.tylubz.service.impl.RemoteRestService;
 
 /**
- * Created by Sergei on 09.10.2016.
+ * Class for returning information
+ * about orders and users in JSON
  */
 @RestController
 @RequestMapping(value = "/rest/")
 public class RemoteController {
     @Autowired
     RemoteRestService service;
+
+    /**
+     * getting info about users
+     * and orders
+     * @return
+     */
     @RequestMapping(value = "info",produces={"application/json; charset=UTF-8"})
     public String getInfo() {
         return service.countResult();

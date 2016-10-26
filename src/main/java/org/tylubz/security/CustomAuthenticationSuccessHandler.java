@@ -1,4 +1,4 @@
-package org.tylubz.controller;
+package org.tylubz.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,13 +16,11 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by Sergei on 01.10.2016.
+ * Class for success authentication
  */
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        //do some logic here if you want something to be done whenever
-        //the user successfully logs in.
 
         HttpSession session = request.getSession();
         User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
